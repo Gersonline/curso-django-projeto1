@@ -23,8 +23,13 @@ def category(request, category_id):
 
 
 def recipe(request, id):
+    recipe = Recipe.objects.filter(
+        pk=id,
+        is_published=True,
+    ).order_by('-id').first()
+
     return render(request, 'recipes/pages/recipe-view.html', context={
-        'recipe': make_recipe(),
+        'recipe': recipe,
         #Cria variavel para entender que está no detail em recipes/partials/recipe.html
         'is_detail_page': True,
     })
