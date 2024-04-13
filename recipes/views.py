@@ -33,3 +33,6 @@ def recipe(request, id):
         #Cria variavel para entender que está no detail em recipes/partials/recipe.html
         'is_detail_page': True,
     })
+
+def search(request):
+    return render(request, 'recipes/pages/search.html')
