@@ -6,6 +6,7 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 from recipes.models import Recipe
 from utils.pagination import make_pagination
+from django.contrib import messages
 
 PER_PAGE = int(os.environ.get('PER_PAGE', 6))
 
@@ -13,6 +14,10 @@ def home(request):
     recipes = Recipe.objects.filter(is_published=True).order_by('-id')
 
     page_obj, pagination_range = make_pagination(request, recipes, PER_PAGE)
+
+    # Se quando receber parametro na URL
+    #if request.GET.get('show'):
+    messages.success(request, 'Mensagem de Aviso')
 
     return render(request, 'recipes/pages/home.html', context={
         'recipes': page_obj,
