@@ -12,6 +12,7 @@ def add_placeholder(field, placeholder_val):
 class RegisterForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        #self.fields['username'].widgets.attrs['placeholder'] = 'Your username'
         add_placeholder(self.fields['username'], 'Your username')
         add_placeholder(self.fields['email'], 'Your e-mail')
         add_placeholder(self.fields['first_name'], 'Ex.: John')
@@ -74,6 +75,7 @@ class RegisterForm(forms.ModelForm):
                 'placeholder': 'Type your password here'
             })
         }
+
 
     def clean(self):
         cleaned_data = super().clean()
