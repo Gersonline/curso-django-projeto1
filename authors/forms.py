@@ -34,13 +34,15 @@ class RegisterForm(forms.ModelForm):
             'Password must have at least one uppercase letter, '
             'one lowercase letter and one number. The length should be '
             'at least 8 characters.'
-        )
+        ),
+        label='Password'
     )
     password2 = forms.CharField(
         required=True,
         widget=forms.PasswordInput(attrs={
             #'placeholder': 'Repeat your password'
-        })
+        }),
+        label='Password2'
     )
     
     # Trechos comentados para evitar conflitos com solução na parte anterior do código. Mas abaixo segue sendo possibilidade.
