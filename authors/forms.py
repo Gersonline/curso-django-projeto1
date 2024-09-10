@@ -42,9 +42,26 @@ class RegisterForm(forms.ModelForm):
         widget=forms.PasswordInput(attrs={
             #'placeholder': 'Repeat your password'
         }),
-        label='Password2'
+        label='Password2',
+        error_messages={
+            'required': 'Please, repeat your password'
+        }
     )
-    
+    first_name = forms.CharField(
+        error_messages={'required': 'Write your first name'},
+        label='First name'
+    )
+    last_name = forms.CharField(
+        error_messages={'required': 'Write your last name'},
+        label='Last name'
+    )
+    email = forms.EmailField(
+        error_messages={'required': 'E-mail is required'},
+        label='E-mail',
+        help_text='The e-mail must be valid.',
+    )
+
+    # Segunda forma é colocar no Meta as regras
     # Trechos comentados para evitar conflitos com solução na parte anterior do código. Mas abaixo segue sendo possibilidade.
     class Meta:
         model = User
@@ -77,6 +94,7 @@ class RegisterForm(forms.ModelForm):
                 #'placeholder': 'Type your username here',
                 'class': 'input text-input'
             }),
+            
             'password': forms.PasswordInput(attrs={
                 #'placeholder': 'Type your password here'
             })
