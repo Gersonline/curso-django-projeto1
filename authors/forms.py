@@ -47,6 +47,15 @@ class RegisterForm(forms.ModelForm):
             'required': 'Please, repeat your password'
         }
     )
+    username = forms.CharField(
+        label='Username',
+        error_messages={
+            'required':'This field must not be empty',
+            'min_length':'Username must have at least 4 characters',
+            'max_length':'Username must have less than 150 characters',
+        },
+        min_length=4, max_length=150
+    )
     first_name = forms.CharField(
         error_messages={'required': 'Write your first name'},
         label='First name'
@@ -84,11 +93,11 @@ class RegisterForm(forms.ModelForm):
         help_texts = {
             'email': 'The e-mail must be valid.',
         }
-        error_messages = {
-            'username': {
-                'required': 'This field must not be empty',
-            }
-        }
+        #error_messages = {
+            #'username': {
+                #'required': 'This field must not be empty',
+        #    }
+        #}
         widgets = {
             'first_name': forms.TextInput(attrs={
                 #'placeholder': 'Type your username here',
